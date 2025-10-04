@@ -45,25 +45,25 @@ const CreatePage = () => {
             Back to Notes
           </Link>
 
-          <div className="card bg-base-100">
+          <div className="card bg-base-100 flex justify-center items-center p-4">
             <div className="card-body">
               <h2 className="card-title text-2xl mb-4">Create New Note</h2>
               <form onSubmit={handleSubmit}>
                 <div className="form-control mb-4">
-                  <label className="label">
+                  <label className="label mb-2">
                     <span className="label-text">Title</span>
                   </label>
                   <input
                     type="text"
                     placeholder="Note Title"
-                    className="input input-bordered"
+                    className="input input-bordered "
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                   />
                 </div>
 
                 <div className="form-control mb-4">
-                  <label className="label">
+                  <label className="label mb-2">
                     <span className="label-text">Content</span>
                   </label>
                   <textarea
@@ -74,8 +74,8 @@ const CreatePage = () => {
                   />
                 </div>
 
-                <div className="card-actions justify-end">
-                  <button type="submit" className="btn btn-primary" disabled={loading}>
+                <div className="card-actions justify-center">
+                  <button type="submit" className="btn btn-primary " disabled={loading}>
                     {loading ? "Creating..." : "Create Note"}
                   </button>
                 </div>
