@@ -1,11 +1,13 @@
 import { ArrowLeftIcon } from "lucide-react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router";
 import api from "../lib/axios";
 
 const CreatePage = () => {
-  const [title, setTitle] = useState("");
+  // const [title, setTitle] = useState("");
+  const titleRef = useRef("")
+  const contentRef = useRef("")
   const [content, setContent] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -14,7 +16,7 @@ const CreatePage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!title.trim() || !content.trim()) {
+    if (!titleRef || !contentRef) {
       toast.error("All fields are required");
       return;
     }
@@ -22,8 +24,8 @@ const CreatePage = () => {
     setLoading(true);
     try {
       await api.post("/notes", {
-        title,
-        content,
+        title : titleRef.current.value,
+        content :contentRef.current.value,
       });
 
       toast.success("Note created successfully!");
@@ -57,8 +59,9 @@ const CreatePage = () => {
                     type="text"
                     placeholder="Note Title"
                     className="input input-bordered ml-12 px-20 py-8 "
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
+                    // value={title}
+                    // onChange={(e) => setTitle(e.target.value)}
+                    ref={titleRef}
                   />
                 </div>
 
@@ -69,8 +72,9 @@ const CreatePage = () => {
                   <textarea
                     placeholder="Write your note here..."
                     className="textarea textarea-bordered px-20 py-10 ml-4"
-                    value={content}
-                    onChange={(e) => setContent(e.target.value)}
+                    // value={content}
+                    // onChange={(e) => setContent(e.target.value)}
+                    ref={contentRef}
                   />
                 </div>
 
