@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import NoteCard from "../components/NoteCard";
 import api from "../lib/axios.js";
 import { ClipLoader } from "react-spinners";
+import NotesNotFound from "../components/NotesNotFound.jsx";
 
 const HomePage = () => {
   const [loading, setLoading] = useState(true);
@@ -46,11 +47,7 @@ const HomePage = () => {
             ))}
           </div>
         ) : (
-          <div className="flex flex-cols items-center justify-center">
-            <p className="font-bold font-mono text-2xl text-green-500">
-              No Notes Available, create a new one
-            </p>
-          </div>
+          <NotesNotFound />
         )}
       </div>
     </div>
